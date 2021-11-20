@@ -4,11 +4,12 @@ import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import InfoTable from './InfoTable'
-import { Typography } from '@material-ui/core'
+import LoadingCircular from './LoadingCircular'
 
 export const App = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -16,11 +17,13 @@ export const App = () => {
   console.log('data', data)
 
   const fetchData = async () => {
-    setIsLoading(true)
     try {
+      setIsLoading(true)
+      setIsError(false)
       const result = await api.getUsersDiff()
       setData(prev => [...prev, ...result.data])
     } catch (error) {
+      setIsError(true)
       console.log(error)
     }
 
@@ -33,10 +36,10 @@ export const App = () => {
         <InfoTable data={data} />
 
         {isLoading ? (
-          <Typography>Loading..</Typography>
+          <LoadingCircular />
         ) : (
           <Button variant='contained' color='primary' onClick={fetchData}>
-            Load more
+            {isError ? 'Retry' : 'Load more'}
           </Button>
         )}
       </Box>
