@@ -14,42 +14,45 @@ const useStyles = makeStyles({
   },
 })
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
-}
+// function createData(name, calories, fat, carbs, protein) {
+//   return { name, calories, fat, carbs, protein }
+// }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24),
-  createData('Ice cream sandwich', 237, 9.0, 37),
-  createData('Eclair', 262, 16.0, 24),
-  createData('Cupcake', 305, 3.7, 67),
-  createData('Gingerbread', 356, 16.0, 49),
-]
+// const rows = [
+//   createData('Frozen yoghurt', 159, 6.0, 24),
+//   createData('Ice cream sandwich', 237, 9.0, 37),
+//   createData('Eclair', 262, 16.0, 24),
+//   createData('Cupcake', 305, 3.7, 67),
+//   createData('Gingerbread', 356, 16.0, 49),
+// ]
 
-const InfoTable = () => {
+const InfoTable = ({ data }) => {
   const classes = useStyles()
 
+  const rows = data.map(({ id, timestamp, diff }) => ({
+    id,
+    timestamp,
+    oldValue: diff[0].oldValue,
+    newValue: diff[0].newValue,
+  }))
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label='simple table'>
+      <Table className={classes.table} arcenterbel='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align='right'>User ID</TableCell>
-            <TableCell align='right'>Old Value</TableCell>
-            <TableCell align='right'>New Value</TableCell>
+            <TableCell align='center'>Date</TableCell>
+            <TableCell align='center'>User ID</TableCell>
+            <TableCell align='center'>Old Value</TableCell>
+            <TableCell align='center'>New Value</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component='th' scope='row'>
-                {row.name}
-              </TableCell>
-              <TableCell align='right'>{row.calories}</TableCell>
-              <TableCell align='right'>{row.fat}</TableCell>
-              <TableCell align='right'>{row.carbs}</TableCell>
-              <TableCell align='right'>{row.protein}</TableCell>
+            <TableRow key={row.id}>
+              <TableCell align='center'>{row.timestamp}</TableCell>
+              <TableCell align='center'>{row.id}</TableCell>
+              <TableCell align='center'>{row.oldValue}</TableCell>
+              <TableCell align='center'>{row.newValue}</TableCell>
             </TableRow>
           ))}
         </TableBody>
