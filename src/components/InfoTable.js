@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
   table: {
@@ -48,6 +49,10 @@ const InfoTable = ({ data }) => {
       </Table>
     </TableContainer>
   )
+}
+
+InfoTable.propTypes = {
+  data: PropTypes.array.isRequired,
 }
 
 export default InfoTable
