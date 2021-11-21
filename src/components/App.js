@@ -12,6 +12,7 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [notification, setNotification] = useState(null)
+  const [isFetchedAll, setIsFetchedAll] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -21,10 +22,14 @@ export const App = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true)
-      setIsError(false)
       setNotification(null)
       const result = await api.getUsersDiff()
       setData(prev => [...prev, ...result.data])
+      setIsError(false)
+      if (result.offset + result.limit >= result.total) {
+        setIsFetchedAll(true)
+        setNotification('All data is fetched!')
+      }
     } catch (error) {
       setIsError(true)
       setNotification('We had problems fetching your data. Please try again!')
@@ -43,7 +48,7 @@ export const App = () => {
 
         {isLoading ? (
           <LoadingCircular />
-        ) : (
+        ) : isFetchedAll ? null : (
           <Button variant='contained' color='primary' onClick={fetchData}>
             {isError ? 'Retry' : 'Load more'}
           </Button>
