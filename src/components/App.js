@@ -17,7 +17,6 @@ export const App = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  console.log('data', data)
 
   const fetchData = async () => {
     try {
@@ -33,7 +32,6 @@ export const App = () => {
     } catch (error) {
       setIsError(true)
       setNotification('We had problems fetching your data. Please try again!')
-      console.log(error)
     }
 
     setIsLoading(false)

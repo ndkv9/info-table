@@ -23,6 +23,7 @@ const InfoTable = ({ data }) => {
     oldValue: diff[0].oldValue,
     newValue: diff[0].newValue,
   }))
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} arcenterbel='simple table'>
