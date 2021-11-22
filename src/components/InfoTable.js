@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 const InfoTable = ({ data }) => {
   const classes = useStyles()
+  const [isDESC, setIsDESC] = useState(true)
 
   // helper fn to transform timestamp to date value
   const getDateValue = timestamp => {
@@ -28,11 +29,13 @@ const InfoTable = ({ data }) => {
     return date
   }
 
+  // helper fn to sort data by date
   const sortByDateValue = data => {
-    const sortedData = data.sort(
-      (current, next) => next.timestamp - current.timestamp,
-    )
-    return sortedData
+    if (isDESC) {
+      return data.sort((current, next) => next.timestamp - current.timestamp)
+    } else {
+      return data.sort((current, next) => current.timestamp - next.timestamp)
+    }
   }
 
   const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
@@ -47,7 +50,9 @@ const InfoTable = ({ data }) => {
       <Table className={classes.table} arcenterbel='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell align='center'>Date</TableCell>
+            <TableCell align='center' onClick={() => setIsDESC(!isDESC)}>
+              Date
+            </TableCell>
             <TableCell align='center'>User ID</TableCell>
             <TableCell align='center'>Old Value</TableCell>
             <TableCell align='center'>New Value</TableCell>
