@@ -23,8 +23,8 @@ export const App = () => {
       setIsLoading(true)
       setNotification(null)
       const result = await api.getUsersDiff()
-      setData(prev => [...prev, ...result.data])
       setIsError(false)
+      setData(prev => [...prev, ...result.data])
       if (result.offset + result.limit >= result.total) {
         setIsFetchedAll(true)
         setNotification('All data is fetched!')
@@ -40,7 +40,9 @@ export const App = () => {
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
-        <InfoTable data={data} />
+        <h2>Im a Header</h2>
+
+        {data.length !== 0 && <InfoTable data={data} />}
 
         <Notification notification={notification} />
 

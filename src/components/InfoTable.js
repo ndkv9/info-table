@@ -18,9 +18,15 @@ const useStyles = makeStyles({
 const InfoTable = ({ data }) => {
   const classes = useStyles()
 
+  // helper fn to transform timestamp to date value
+  const getDate = timestamp => {
+    const dateValue = new Date(timestamp).toISOString().slice(0, 10)
+    return dateValue
+  }
+
   const rows = data.map(({ id, timestamp, diff }) => ({
     id,
-    timestamp,
+    timestamp: getDate(timestamp),
     oldValue: diff[0].oldValue,
     newValue: diff[0].newValue,
   }))
