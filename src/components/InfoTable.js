@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import SortingButton from './SortingButton'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles({
@@ -50,8 +51,9 @@ const InfoTable = ({ data }) => {
       <Table className={classes.table} arcenterbel='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell align='center' onClick={() => setIsDESC(!isDESC)}>
+            <TableCell align='center'>
               Date
+              <SortingButton isDESC={isDESC} setIsDESC={setIsDESC} />
             </TableCell>
             <TableCell align='center'>User ID</TableCell>
             <TableCell align='center'>Old Value</TableCell>
