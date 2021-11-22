@@ -19,14 +19,25 @@ const InfoTable = ({ data }) => {
   const classes = useStyles()
 
   // helper fn to transform timestamp to date value
-  const getDate = timestamp => {
-    const dateValue = new Date(timestamp).toISOString().slice(0, 10)
-    return dateValue
+  const getDateValue = timestamp => {
+    const partsOfDate = new Date(timestamp).toLocaleDateString().split('/')
+    const year = partsOfDate.pop()
+    partsOfDate.unshift(year)
+    const date = partsOfDate.join('-')
+
+    return date
   }
 
-  const rows = data.map(({ id, timestamp, diff }) => ({
+  const sortByDateValue = data => {
+    const sortedData = data.sort(
+      (current, next) => next.timestamp - current.timestamp,
+    )
+    return sortedData
+  }
+
+  const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
-    timestamp: getDate(timestamp),
+    timestamp: getDateValue(timestamp),
     oldValue: diff[0].oldValue,
     newValue: diff[0].newValue,
   }))
