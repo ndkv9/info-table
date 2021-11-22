@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box'
 import InfoTable from './InfoTable'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
+import SwitchDataButton from './SwitchDataButton'
 
 export const App = () => {
   const [data, setData] = useState([])
@@ -13,6 +14,7 @@ export const App = () => {
   const [isError, setIsError] = useState(false)
   const [notification, setNotification] = useState(null)
   const [isFetchedAll, setIsFetchedAll] = useState(false)
+  const [isUserData, setIsUserData] = useState(true)
 
   useEffect(() => {
     fetchData()
@@ -41,6 +43,13 @@ export const App = () => {
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
         <h2>Im a Header</h2>
+
+        {data.length !== 0 && (
+          <SwitchDataButton
+            isUserData={isUserData}
+            setIsUserData={setIsUserData}
+          />
+        )}
 
         {data.length !== 0 && <InfoTable data={data} />}
 

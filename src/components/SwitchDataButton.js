@@ -7,8 +7,8 @@ const SwitchDataButton = ({ isUserData, setIsUserData }) => {
   return (
     <Button
       variant='contained'
-      color='secondary'
-      startIcon={isUserData ? <AccountCircleIcon /> : <DescriptionIcon />}
+      color='primary'
+      startIcon={isUserData ? <DescriptionIcon /> : <AccountCircleIcon />}
       onClick={() => setIsUserData(!isUserData)}
     >
       {isUserData ? 'Project History' : 'User History'}
