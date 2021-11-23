@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -29,11 +29,7 @@ const InfoTable = ({ getData }) => {
   const [notification, setNotification] = useState(null)
   const [isFetchedAll, setIsFetchedAll] = useState(false)
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setIsLoading(true)
       setNotification(null)
@@ -50,7 +46,12 @@ const InfoTable = ({ getData }) => {
     }
 
     setIsLoading(false)
-  }
+  }, [getData])
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+
   // helper fn to transform timestamp to date value
   const getDateValue = timestamp => {
     const partsOfDate = new Date(timestamp).toLocaleDateString().split('/')
@@ -121,7 +122,7 @@ const InfoTable = ({ getData }) => {
 }
 
 InfoTable.propTypes = {
-  data: PropTypes.array.isRequired,
+  getData: PropTypes.func.isRequired,
 }
 
 export default InfoTable

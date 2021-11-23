@@ -5,12 +5,13 @@ import Box from '@material-ui/core/Box'
 import InfoTable from './InfoTable'
 
 export const App = () => {
+  const { getUsersDiff, getProjectsDiff } = api
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
-        <InfoTable getData={api.getUsersDiff} />
+        <InfoTable getData={getUsersDiff} />
 
-        <InfoTable getData={api.getProjectsDiff} />
+        <InfoTable getData={getProjectsDiff} />
       </Box>
     </Container>
   )
