@@ -16,7 +16,7 @@ import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
   root: {
-    marginBottom: '2rem',
+    marginBottom: '1rem',
   },
   table: {
     minWidth: 650,
@@ -96,18 +96,18 @@ const InfoTable = ({ getData }) => {
           <Table className={classes.table} arcenterbel='simple table'>
             <TableHead>
               <TableRow>
-                <TableCell align='left'>
+                <TableCell align='left' width={100}>
                   <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
                     <Typography className={classes.header}> Date</Typography>
                   </SortingButton>
                 </TableCell>
-                <TableCell align='left'>
+                <TableCell align='left' width={400}>
                   <Typography className={classes.header}>User ID</Typography>
                 </TableCell>
-                <TableCell align='left'>
+                <TableCell align='left' width={200}>
                   <Typography className={classes.header}>Old Value</Typography>
                 </TableCell>
-                <TableCell align='left'>
+                <TableCell align='left' width={200}>
                   <Typography className={classes.header}>New Value</Typography>
                 </TableCell>
               </TableRow>
