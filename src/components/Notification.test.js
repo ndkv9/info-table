@@ -13,6 +13,7 @@ describe('<Notification />', () => {
   describe('render()', () => {
     it('renders the proper message', () => {
       expect(wrapper.find({ 'data-testid': 'notification' })).toHaveLength(1)
+      expect(wrapper.text()).toEqual('I am a message')
     })
   })
 })
