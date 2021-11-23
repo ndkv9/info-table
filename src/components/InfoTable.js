@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = () => {
+const InfoTable = ({ getData }) => {
   const classes = useStyles()
   const [isDESC, setIsDESC] = useState(true)
   const [data, setData] = useState([])
@@ -33,7 +33,7 @@ const InfoTable = () => {
     fetchData()
   }, [])
 
-  const fetchData = async ({ getData }) => {
+  const fetchData = async () => {
     try {
       setIsLoading(true)
       setNotification(null)
@@ -79,6 +79,8 @@ const InfoTable = () => {
 
   return (
     <Box>
+      <h2>Im a Header</h2>
+
       <TableContainer component={Paper}>
         <Table className={classes.table} arcenterbel='simple table'>
           <TableHead>
@@ -107,9 +109,13 @@ const InfoTable = () => {
 
       <Notification notification={notification} />
 
-      <LoadingCircular />
-
-      <Button variant='contained' color='primary' onClick={fetchData}></Button>
+      {isLoading ? (
+        <LoadingCircular />
+      ) : isFetchedAll ? null : (
+        <Button variant='contained' color='primary' onClick={fetchData}>
+          {isError ? 'Retry' : 'Load more'}
+        </Button>
+      )}
     </Box>
   )
 }
