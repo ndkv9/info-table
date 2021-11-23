@@ -18,6 +18,10 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 })
 
 const InfoTable = ({ getData }) => {
@@ -89,17 +93,17 @@ const InfoTable = ({ getData }) => {
             <TableRow>
               <TableCell align='left'>
                 <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
-                  <Typography variant='h6'> Date</Typography>
+                  <Typography className={classes.header}> Date</Typography>
                 </SortingButton>
               </TableCell>
               <TableCell align='left'>
-                <Typography variant='h6'>User ID</Typography>
+                <Typography className={classes.header}>User ID</Typography>
               </TableCell>
               <TableCell align='left'>
-                <Typography variant='h6'>Old Value</Typography>
+                <Typography className={classes.header}>Old Value</Typography>
               </TableCell>
               <TableCell align='left'>
-                <Typography variant='h6'>New Value</Typography>
+                <Typography className={classes.header}>New Value</Typography>
               </TableCell>
             </TableRow>
           </TableHead>

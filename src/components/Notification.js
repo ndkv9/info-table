@@ -11,6 +11,8 @@ const Notification = ({ notification, isError }) => {
     <Typography
       data-testid='notification'
       variant='body1'
+      gutterBottom
+      align='center'
       color={isError ? 'error' : 'primary'}
     >
       {notification}
