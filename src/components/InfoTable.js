@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -19,11 +19,6 @@ const useStyles = makeStyles({
 const InfoTable = ({ data }) => {
   const classes = useStyles()
   const [isDESC, setIsDESC] = useState(true)
-  const [dataToHandle, setDataToHandle] = useState([])
-
-  useEffect(() => {
-    setDataToHandle(data)
-  }, [data])
 
   // helper fn to transform timestamp to date value
   const getDateValue = timestamp => {
@@ -44,7 +39,7 @@ const InfoTable = ({ data }) => {
     }
   }
 
-  const rows = sortByDateValue(dataToHandle).map(({ id, timestamp, diff }) => ({
+  const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
     timestamp: getDateValue(timestamp),
     oldValue: diff[0].oldValue,
