@@ -1,12 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Typography } from '@material-ui/core'
 
 const Notification = ({ notification }) => {
   if (!notification) {
     return null
   }
 
-  return <div data-testid='notification'>{notification}</div>
+  return (
+    <Typography data-testid='notification' variant='body1'>
+      {notification}
+    </Typography>
+  )
 }
 
 Notification.propTypes = {
