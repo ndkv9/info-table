@@ -10,16 +10,16 @@ describe('<InfoTable />', () => {
     wrapper = shallow(<InforTable getData={mockFetchData} />)
   })
 
-  describe('it should', () => {
-    it('render the table component', () => {
+  describe('render()', () => {
+    it('renders the table component', () => {
       expect(wrapper.find({ 'data-testid': 'info-table' })).toHaveLength(1)
     })
 
-    it('can display loading button', () => {
+    it('displays loading button', () => {
       expect(wrapper.find({ 'data-testid': 'loading-btn' })).toHaveLength(1)
     })
 
-    it('loading data when button is clicked', () => {
+    it('loads data when button is clicked', () => {
       wrapper.find({ 'data-testid': 'loading-btn' }).simulate('click')
       expect(mockFetchData).toHaveBeenCalled()
     })
