@@ -20,6 +20,7 @@ const useStyles = makeStyles({
   },
   table: {
     minWidth: 650,
+    backgroundColor: '#f5f5f5',
   },
   header: {
     fontSize: 18,
@@ -89,7 +90,7 @@ const InfoTable = ({ getData }) => {
   }))
 
   return (
-    <Box data-testid='info-table'>
+    <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
       {data.length !== 0 && (
         <TableContainer className={classes.root} component={Paper}>
           <Table className={classes.table} arcenterbel='simple table'>
