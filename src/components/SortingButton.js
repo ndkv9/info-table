@@ -1,22 +1,14 @@
 import React from 'react'
-import IconButton from '@material-ui/core/IconButton'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import TableSortLabel from '@material-ui/core/TableSortLabel'
 import PropTypes from 'prop-types'
 
 const SortingButton = ({ isDESC, setIsDESC }) => {
   return (
-    <IconButton
-      aria-label='delete'
-      size='small'
+    <TableSortLabel
+      active={true}
+      direction={isDESC ? 'desc' : 'asc'}
       onClick={() => setIsDESC(!isDESC)}
-    >
-      {isDESC ? (
-        <ArrowDropDownIcon fontSize='inherit' />
-      ) : (
-        <ArrowDropUpIcon fontSize='inherit' />
-      )}
-    </IconButton>
+    />
   )
 }
 
