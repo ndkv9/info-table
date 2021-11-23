@@ -9,9 +9,15 @@ export const App = () => {
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
-        <InfoTable getData={getUsersDiff} />
+        <React.Fragment>
+          <h2>Users History</h2>
+          <InfoTable getData={getUsersDiff} />
+        </React.Fragment>
 
-        <InfoTable getData={getProjectsDiff} />
+        <React.Fragment>
+          <h2>Projects History</h2>
+          <InfoTable getData={getProjectsDiff} />
+        </React.Fragment>
       </Box>
     </Container>
   )

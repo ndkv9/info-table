@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import SortingButton from './SortingButton'
 import PropTypes from 'prop-types'
-import { Box } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
@@ -63,13 +62,16 @@ const InfoTable = ({ getData }) => {
   }
 
   // helper fn to sort data by date
-  const sortByDateValue = data => {
-    if (isDESC) {
-      return data.sort((current, next) => next.timestamp - current.timestamp)
-    } else {
-      return data.sort((current, next) => current.timestamp - next.timestamp)
-    }
-  }
+  const sortByDateValue = useCallback(
+    data => {
+      if (isDESC) {
+        return data.sort((current, next) => next.timestamp - current.timestamp)
+      } else {
+        return data.sort((current, next) => current.timestamp - next.timestamp)
+      }
+    },
+    [isDESC],
+  )
 
   const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
@@ -79,9 +81,7 @@ const InfoTable = ({ getData }) => {
   }))
 
   return (
-    <Box>
-      <h2>Im a Header</h2>
-
+    <React.Fragment>
       <TableContainer component={Paper}>
         <Table className={classes.table} arcenterbel='simple table'>
           <TableHead>
@@ -117,7 +117,7 @@ const InfoTable = ({ getData }) => {
           {isError ? 'Retry' : 'Load more'}
         </Button>
       )}
-    </Box>
+    </React.Fragment>
   )
 }
 
