@@ -15,7 +15,7 @@ const LoadingCircular = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid='loading-circular'>
       <CircularProgress />
     </div>
   )
