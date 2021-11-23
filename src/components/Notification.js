@@ -13,7 +13,7 @@ const Notification = ({ notification, isError }) => {
       variant='body1'
       gutterBottom
       align='center'
-      color={isError ? 'error' : 'primary'}
+      color={isError ? 'error' : 'secondary'}
     >
       {notification}
     </Typography>

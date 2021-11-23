@@ -15,6 +15,9 @@ import Notification from './Notification'
 import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
+  root: {
+    marginBottom: '2rem',
+  },
   table: {
     minWidth: 650,
   },
@@ -87,7 +90,7 @@ const InfoTable = ({ getData }) => {
 
   return (
     <Box data-testid='info-table'>
-      <TableContainer component={Paper}>
+      <TableContainer className={classes.root} component={Paper}>
         <Table className={classes.table} arcenterbel='simple table'>
           <TableHead>
             <TableRow>
