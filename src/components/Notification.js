@@ -6,7 +6,7 @@ const Notification = ({ notification }) => {
     return null
   }
 
-  return <div>{notification}</div>
+  return <div data-testid='notification'>{notification}</div>
 }
 
 Notification.propTypes = {
