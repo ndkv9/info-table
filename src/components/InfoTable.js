@@ -45,7 +45,7 @@ const InfoTable = ({ getData }) => {
       setData(prev => [...prev, ...result.data])
       if (result.offset + result.limit >= result.total) {
         setIsFetchedAll(true)
-        setNotification('All data is fetched!')
+        setNotification('Fetched all data!')
       }
     } catch (error) {
       setIsError(true)
@@ -90,46 +90,48 @@ const InfoTable = ({ getData }) => {
 
   return (
     <Box data-testid='info-table'>
-      <TableContainer className={classes.root} component={Paper}>
-        <Table className={classes.table} arcenterbel='simple table'>
-          <TableHead>
-            <TableRow>
-              <TableCell align='left'>
-                <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
-                  <Typography className={classes.header}> Date</Typography>
-                </SortingButton>
-              </TableCell>
-              <TableCell align='left'>
-                <Typography className={classes.header}>User ID</Typography>
-              </TableCell>
-              <TableCell align='left'>
-                <Typography className={classes.header}>Old Value</Typography>
-              </TableCell>
-              <TableCell align='left'>
-                <Typography className={classes.header}>New Value</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.id}>
+      {data.length !== 0 && (
+        <TableContainer className={classes.root} component={Paper}>
+          <Table className={classes.table} arcenterbel='simple table'>
+            <TableHead>
+              <TableRow>
                 <TableCell align='left'>
-                  <Typography>{row.timestamp}</Typography>
+                  <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
+                    <Typography className={classes.header}> Date</Typography>
+                  </SortingButton>
                 </TableCell>
                 <TableCell align='left'>
-                  <Typography>{row.id}</Typography>
+                  <Typography className={classes.header}>User ID</Typography>
                 </TableCell>
                 <TableCell align='left'>
-                  <Typography>{row.oldValue}</Typography>
+                  <Typography className={classes.header}>Old Value</Typography>
                 </TableCell>
                 <TableCell align='left'>
-                  <Typography>{row.newValue}</Typography>
+                  <Typography className={classes.header}>New Value</Typography>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {rows.map(row => (
+                <TableRow key={row.id}>
+                  <TableCell align='left'>
+                    <Typography>{row.timestamp}</Typography>
+                  </TableCell>
+                  <TableCell align='left'>
+                    <Typography>{row.id}</Typography>
+                  </TableCell>
+                  <TableCell align='left'>
+                    <Typography>{row.oldValue}</Typography>
+                  </TableCell>
+                  <TableCell align='left'>
+                    <Typography>{row.newValue}</Typography>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
 
       <Notification notification={notification} isError={isError} />
 

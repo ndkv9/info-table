@@ -11,12 +11,16 @@ export const App = () => {
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
         <React.Fragment>
-          <Typography variant='h4'>Users History</Typography>
+          <Typography variant='h4' align='center'>
+            Users History
+          </Typography>
           <InfoTable getData={getUsersDiff} />
         </React.Fragment>
 
         <React.Fragment>
-          <Typography variant='h4'>Projects History</Typography>
+          <Typography variant='h4' align='center'>
+            Projects History
+          </Typography>
           <InfoTable getData={getProjectsDiff} />
         </React.Fragment>
       </Box>
