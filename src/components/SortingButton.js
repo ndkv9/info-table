@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 const SortingButton = ({ isDESC, setIsDESC, children }) => {
   return (
     <TableSortLabel
+      data-testid='sorting-btn'
       active={true}
       direction={isDESC ? 'desc' : 'asc'}
       onClick={() => setIsDESC(!isDESC)}
