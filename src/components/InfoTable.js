@@ -22,9 +22,6 @@ const useStyles = makeStyles({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  btn: {
-    alignContent: 'center',
-  },
 })
 
 const InfoTable = ({ getData }) => {
@@ -136,7 +133,7 @@ const InfoTable = ({ getData }) => {
       {isLoading ? (
         <LoadingCircular />
       ) : isFetchedAll ? null : (
-        <Box textAlign='center'>
+        <Box textAlign='center' marginBottom='2rem'>
           <Button
             variant='contained'
             color='primary'
