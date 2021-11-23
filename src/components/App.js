@@ -17,17 +17,14 @@ export const App = () => {
   const [isUserData, setIsUserData] = useState(true)
 
   useEffect(() => {
-    setData([])
     fetchData()
-  }, [isUserData])
+  }, [])
 
   const fetchData = async () => {
     try {
       setIsLoading(true)
       setNotification(null)
-      const result = isUserData
-        ? await api.getUsersDiff()
-        : await api.getProjectsDiff()
+      const result = await api.getUsersDiff()
       setIsError(false)
       setData(prev => [...prev, ...result.data])
       if (result.offset + result.limit >= result.total) {
