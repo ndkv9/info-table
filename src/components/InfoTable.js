@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
   table: {
@@ -87,30 +87,44 @@ const InfoTable = ({ getData }) => {
         <Table className={classes.table} arcenterbel='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell align='center'>
+              <TableCell align='left'>
                 <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
-                  Date
+                  <Typography variant='h6'> Date</Typography>
                 </SortingButton>
               </TableCell>
-              <TableCell align='center'>User ID</TableCell>
-              <TableCell align='center'>Old Value</TableCell>
-              <TableCell align='center'>New Value</TableCell>
+              <TableCell align='left'>
+                <Typography variant='h6'>User ID</Typography>
+              </TableCell>
+              <TableCell align='left'>
+                <Typography variant='h6'>Old Value</Typography>
+              </TableCell>
+              <TableCell align='left'>
+                <Typography variant='h6'>New Value</Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => (
               <TableRow key={row.id}>
-                <TableCell align='center'>{row.timestamp}</TableCell>
-                <TableCell align='center'>{row.id}</TableCell>
-                <TableCell align='center'>{row.oldValue}</TableCell>
-                <TableCell align='center'>{row.newValue}</TableCell>
+                <TableCell align='left'>
+                  <Typography>{row.timestamp}</Typography>
+                </TableCell>
+                <TableCell align='left'>
+                  <Typography>{row.id}</Typography>
+                </TableCell>
+                <TableCell align='left'>
+                  <Typography>{row.oldValue}</Typography>
+                </TableCell>
+                <TableCell align='left'>
+                  <Typography>{row.newValue}</Typography>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Notification notification={notification} />
+      <Notification notification={notification} isError={isError} />
 
       {isLoading ? (
         <LoadingCircular />
