@@ -87,8 +87,9 @@ const InfoTable = ({ getData }) => {
           <TableHead>
             <TableRow>
               <TableCell align='center'>
-                Date
-                <SortingButton isDESC={isDESC} setIsDESC={setIsDESC} />
+                <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
+                  Date
+                </SortingButton>
               </TableCell>
               <TableCell align='center'>User ID</TableCell>
               <TableCell align='center'>Old Value</TableCell>
