@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
+import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles({
   table: {
@@ -81,7 +82,7 @@ const InfoTable = ({ getData }) => {
   }))
 
   return (
-    <React.Fragment>
+    <Box data-testid='info-table'>
       <TableContainer component={Paper}>
         <Table className={classes.table} arcenterbel='simple table'>
           <TableHead>
@@ -114,11 +115,16 @@ const InfoTable = ({ getData }) => {
       {isLoading ? (
         <LoadingCircular />
       ) : isFetchedAll ? null : (
-        <Button variant='contained' color='primary' onClick={fetchData}>
+        <Button
+          variant='contained'
+          color='primary'
+          data-testid='loading-btn'
+          onClick={fetchData}
+        >
           {isError ? 'Retry' : 'Load more'}
         </Button>
       )}
-    </React.Fragment>
+    </Box>
   )
 }
 
