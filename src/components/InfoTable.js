@@ -42,6 +42,7 @@ const InfoTable = ({ getAPI }) => {
   const sortByDateValue = useSort(isDESC)
   const fetchData = useFetch(getAPI)
 
+  // fetch initial data in the first load
   useEffect(() => {
     fetchData()
   }, [fetchData])
