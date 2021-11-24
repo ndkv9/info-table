@@ -8,9 +8,11 @@ import InfoTable from './InfoTable'
 
 export const App = () => {
   const { getProjectsDiff, getUsersDiff } = api
-  const { projects, toggleSort } = useData()
+  const { projects, users, toggleSort } = useData()
   const fetchProjectsData = useFetch(getProjectsDiff, 'projects')
   const fetchUsersData = useFetch(getUsersDiff, 'users')
+
+  // initialize data for the first load
   useEffect(() => {
     fetchUsersData()
     fetchProjectsData()
@@ -19,6 +21,13 @@ export const App = () => {
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
+        <InfoTable
+          name={'Users'}
+          api={users}
+          fetchData={fetchUsersData}
+          toggleSort={() => toggleSort('users')}
+        />
+
         <InfoTable
           name={'Projects'}
           api={projects}
