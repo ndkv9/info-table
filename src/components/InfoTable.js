@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
 import { Box, Typography } from '@material-ui/core'
+import useData from '../hooks/useData'
 
 const useStyles = makeStyles({
   root: {
@@ -27,9 +28,30 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ dataType, dispatch, fetchData }) => {
+const InfoTable = ({ getData }) => {
   const classes = useStyles()
-  const { data, isDESC, isLoading, isError, isFetchedAll } = dataType
+
+  const { data, isDESC, isLoading, isError, isFetchedAll, dispatch } = useData()
+
+  const fetchData = useCallback(async () => {
+    try {
+      dispatch({ type: 'LOADING' })
+      const result = await getData()
+      dispatch({ type: 'LOADING_SUCCESS' })
+      dispatch({ type: 'LOAD_DATA', payload: result.data })
+      if (result.offset + result.limit >= result.total) {
+        dispatch({ type: 'FETCHED_ALL' })
+      }
+    } catch (error) {
+      dispatch({ type: 'LOADING_FAILED' })
+    }
+
+    dispatch({ type: 'STOP_LOADING' })
+  }, [dispatch, getData])
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
 
   // helper fn to transform timestamp to date value
   const getDateValue = timestamp => {

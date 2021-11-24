@@ -4,58 +4,49 @@ import { createContext, useReducer } from 'react'
 export const DataContext = createContext()
 
 const initialDataState = {
-  projects: {
-    data: [],
-    isLoading: false,
-    isDESC: true,
-    isError: false,
-    isFetchedAll: false,
-  },
-  users: {
-    data: [],
-    isLoading: false,
-    isDESC: true,
-    isError: false,
-    isFetchedAll: false,
-  },
+  data: [],
+  isLoading: false,
+  isDESC: true,
+  isError: false,
+  isFetchedAll: false,
 }
 
 const dataReducer = (previousState, action) => {
   let newState
   switch (action.type) {
-  case 'LOAD_PROJECTS_DATA':
+  case 'LOAD_DATA':
     newState = { ...previousState }
-    newState.projects.data = newState.projects.data.concat(action.payload)
+    newState.data = newState.data.concat(action.payload)
     return newState
 
   case 'LOADING':
     newState = { ...previousState }
-    newState.projects.isLoading = true
+    newState.isLoading = true
     return newState
 
   case 'STOP_LOADING':
     newState = { ...previousState }
-    newState.projects.isLoading = false
+    newState.isLoading = false
     return newState
 
   case 'LOADING_SUCCESS':
     newState = { ...previousState }
-    newState.projects.isError = false
+    newState.isError = false
     return newState
 
   case 'LOADING_FAILED':
     newState = { ...previousState }
-    newState.projects.isError = true
+    newState.isError = true
     return newState
 
   case 'TOGGLE_SORT':
     newState = { ...previousState }
-    newState.projects.isDESC = !newState.projects.isDESC
+    newState.isDESC = !newState.isDESC
     return newState
 
   case 'FETCHED_ALL':
     newState = { ...previousState }
-    newState.projects.isFetchedAll = true
+    newState.isFetchedAll = true
     return newState
 
   default:

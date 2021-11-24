@@ -1,45 +1,26 @@
-import React, { useEffect, useCallback } from 'react'
+import React from 'react'
 import api from '../lib/api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import { Typography } from '@material-ui/core'
 import InfoTable from './InfoTable'
-import useData from '../hooks/useData'
+import { DataProvider } from '../context/DataContext'
 
 export const App = () => {
-  const { projects, dispatch } = useData()
-  const { getProjectsDiff } = api
-
-  const fetchProjectsData = useCallback(async () => {
-    try {
-      dispatch({ type: 'LOADING' })
-      const result = await getProjectsDiff()
-      dispatch({ type: 'LOADING_SUCCESS' })
-      dispatch({ type: 'LOAD_PROJECTS_DATA', payload: result.data })
-      if (result.offset + result.limit >= result.total) {
-        dispatch({ type: 'FETCHED_ALL' })
-      }
-    } catch (error) {
-      dispatch({ type: 'LOADING_FAILED' })
-    }
-
-    dispatch({ type: 'STOP_LOADING' })
-  }, [dispatch, getProjectsDiff])
-
-  useEffect(() => {
-    fetchProjectsData()
-  }, [fetchProjectsData])
+  const { getProjectsDiff, getUsersDiff } = api
 
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
         <Typography>hello world</Typography>
 
-        <InfoTable
-          dataType={projects}
-          dispatch={dispatch}
-          fetchData={fetchProjectsData}
-        />
+        <DataProvider>
+          <InfoTable getData={getUsersDiff} />
+        </DataProvider>
+
+        <DataProvider>
+          <InfoTable getData={getProjectsDiff} />
+        </DataProvider>
       </Box>
     </Container>
   )
