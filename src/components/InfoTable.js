@@ -60,7 +60,7 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
                 <TableCell align='left' width={100}>
                   <SortingButton isDESC={isDESC} toggleSort={toggleSort}>
                     <Typography
-                      data-testid='sorting-field'
+                      data-testid='date-field'
                       className={classes.header}
                     >
                       {' '}
@@ -69,7 +69,9 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
                   </SortingButton>
                 </TableCell>
                 <TableCell align='left' width={400}>
-                  <Typography className={classes.header}>User ID</Typography>
+                  <Typography data-testid='id-field' className={classes.header}>
+                    User ID
+                  </Typography>
                 </TableCell>
                 <TableCell align='left' width={200}>
                   <Typography className={classes.header}>Old Value</Typography>
@@ -81,7 +83,7 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
             </TableHead>
             <TableBody>
               {rows.map(row => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} data-testid='table-rows'>
                   <TableCell align='left'>
                     <Typography>{row.timestamp}</Typography>
                   </TableCell>

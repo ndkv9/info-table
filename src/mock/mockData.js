@@ -33,6 +33,28 @@ export const mockData = {
         },
       ],
     },
+    {
+      id: 'e9bccea8-bb28-4d0e-9bac-4c09122ad5b4',
+      timestamp: new Date('2020/2/20').getTime(),
+      diff: [
+        {
+          field: 'name',
+          oldValue: 'Constantine Prescott Nathaniel Sr.',
+          newValue: 'Constantine P. N. Sr.',
+        },
+      ],
+    },
+    {
+      id: '08283466-883a-4506-90ac-ab85c3f27ab3',
+      timestamp: new Date('2020/2/21').getTime(),
+      diff: [
+        {
+          field: 'name',
+          oldValue: 'Constantine P. N. Sr.',
+          newValue: 'Constantine P. N.',
+        },
+      ],
+    },
   ],
   isLoading: false,
   isDESC: true,

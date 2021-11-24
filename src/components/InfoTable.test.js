@@ -34,5 +34,15 @@ describe('<InfoTable />', () => {
       wrapper.find({ 'data-testid': 'loading-btn' }).simulate('click')
       expect(mockFetch).toHaveBeenCalled()
     })
+
+    it('except Date column, cannot implement sorting on other columns', () => {
+      wrapper.find({ 'data-testid': 'id-field' }).simulate('click')
+      expect(mockToggle).not.toHaveBeenCalled()
+    })
+
+    // the mockData has 5 sets, so the table should display 5 rows as well
+    it('number of rows corresponding to the number of data set', () => {
+      expect(wrapper.find({ 'data-testid': 'table-rows' })).toHaveLength(5)
+    })
   })
 })
