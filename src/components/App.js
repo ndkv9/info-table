@@ -7,12 +7,20 @@ import useFetch from '../hooks/useFetch'
 import useData from '../hooks/useData'
 import InfoTable from './InfoTable'
 import LoadingCircular from './LoadingCircular'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+  circular: {
+    margin: '10rem auto',
+  },
+})
 
 export const App = () => {
   const { getProjectsDiff, getUsersDiff } = api
   const { projects, users, toggleSort } = useData()
   const fetchProjectsData = useFetch(getProjectsDiff, 'projects')
   const fetchUsersData = useFetch(getUsersDiff, 'users')
+  const classes = useStyles()
 
   // initialize data for the first load
   useEffect(() => {
@@ -23,13 +31,13 @@ export const App = () => {
   return (
     <Container className='app' fixed>
       {projects.data.length === 0 && users.data.length === 0 && (
-        <React.Fragment>
+        <Box className={classes.circular}>
           <Typography variant='h5' align='center'>
             Loading..
           </Typography>
 
           <LoadingCircular />
-        </React.Fragment>
+        </Box>
       )}
 
       {projects.data.length !== 0 && users.data.length !== 0 && (
