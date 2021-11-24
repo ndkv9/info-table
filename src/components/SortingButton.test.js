@@ -7,15 +7,15 @@ describe('<SortingButton />', () => {
   const mockHandler = jest.fn()
 
   beforeEach(() => {
-    wrapper = shallow(<SortingButton isDESC={true} setIsDESC={mockHandler} />)
+    wrapper = shallow(<SortingButton isDESC={true} toggleSort={mockHandler} />)
   })
 
   describe('render()', () => {
-    it('renders the component', () => {
+    it('renders the SortingButton component', () => {
       expect(wrapper.find({ 'data-testid': 'sorting-btn' })).toHaveLength(1)
     })
 
-    it('calls the handler when button is clicked', () => {
+    it('calls the sorting handler when button is clicked', () => {
       wrapper.find({ 'data-testid': 'sorting-btn' }).simulate('click')
       expect(mockHandler).toHaveBeenCalled()
     })
