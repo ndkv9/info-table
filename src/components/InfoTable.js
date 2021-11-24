@@ -14,6 +14,7 @@ import Notification from './Notification'
 import { Box, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import useData from '../hooks/useData'
+import useFetch from '../hooks/useFetch'
 
 const useStyles = makeStyles({
   root: {
@@ -29,26 +30,12 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ getData }) => {
+const InfoTable = ({ getAPI }) => {
   const classes = useStyles()
 
   const { data, isDESC, isLoading, isError, isFetchedAll, dispatch } = useData()
 
-  const fetchData = useCallback(async () => {
-    try {
-      dispatch({ type: 'LOADING' })
-      const result = await getData()
-      dispatch({ type: 'LOADING_SUCCESS' })
-      dispatch({ type: 'LOAD_DATA', payload: result.data })
-      if (result.offset + result.limit >= result.total) {
-        dispatch({ type: 'FETCHED_ALL' })
-      }
-    } catch (error) {
-      dispatch({ type: 'LOADING_FAILED' })
-    }
-
-    dispatch({ type: 'STOP_LOADING' })
-  }, [dispatch, getData])
+  const fetchData = useFetch(getAPI)
 
   useEffect(() => {
     fetchData()
@@ -152,7 +139,7 @@ const InfoTable = ({ getData }) => {
 }
 
 InfoTable.propTypes = {
-  getData: PropTypes.func.isRequired,
+  getAPI: PropTypes.func.isRequired,
 }
 
 export default InfoTable

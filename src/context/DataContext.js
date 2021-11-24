@@ -45,8 +45,16 @@ const dataReducer = (previousState, action) => {
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState)
 
+  const loadData = () => {
+    dispatch({ type: 'LOADING' })
+  }
+
+  const loadMore = data => {
+    dispatch({ type: 'LOAD_DATA', payload: data })
+  }
+
   return (
-    <DataContext.Provider value={{ ...state, dispatch }}>
+    <DataContext.Provider value={{ ...state, dispatch, loadData, loadMore }}>
       {children}
     </DataContext.Provider>
   )

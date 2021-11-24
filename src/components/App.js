@@ -16,14 +16,14 @@ export const App = () => {
           <Typography variant='h4' align='center'>
             Users History
           </Typography>
-          <InfoTable getData={getUsersDiff} />
+          <InfoTable getAPI={getUsersDiff} />
         </DataProvider>
 
         <DataProvider>
           <Typography variant='h4' align='center'>
             Projects History
           </Typography>
-          <InfoTable getData={getProjectsDiff} />
+          <InfoTable getAPI={getProjectsDiff} />
         </DataProvider>
       </Box>
     </Container>
