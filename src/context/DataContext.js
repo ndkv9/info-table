@@ -7,39 +7,57 @@ import { createContext, useReducer } from 'react'
 export const DataContext = createContext()
 
 const initialDataState = {
-  data: [],
-  isLoading: false,
-  isDESC: true,
-  isError: false,
-  isFetchedAll: false,
+  users: {
+    data: [],
+    isLoading: false,
+    isDESC: true,
+    isError: false,
+    isFetchedAll: false,
+  },
+  projects: {
+    data: [],
+    isLoading: false,
+    isDESC: true,
+    isError: false,
+    isFetchedAll: false,
+  },
 }
 
 const dataReducer = (previousState, action) => {
+  let newState
   switch (action.type) {
   case 'LOAD_DATA':
-    return {
-      ...previousState,
-      data: [...previousState.data, ...action.payload],
-    }
+    newState = { ...previousState }
+    newState[action.apiType].data = newState[action.apiType].data.concat(
+      action.payload,
+    )
+    return newState
 
   case 'LOADING':
-    return { ...previousState, isLoading: true }
+    newState = { ...previousState }
+    newState[action.apiType].isLoading = true
+    return newState
 
   case 'STOP_LOADING':
-    return { ...previousState, isLoading: false }
-
+    newState = { ...previousState }
+    newState[action.apiType].isLoading = false
+    return newState
   case 'LOADING_SUCCESS':
-    return { ...previousState, isError: false }
-
+    newState = { ...previousState }
+    newState[action.apiType].isError = false
+    return newState
   case 'LOADING_FAILED':
-    return { ...previousState, isError: true }
-
+    newState = { ...previousState }
+    newState[action.apiType].isError = true
+    return newState
   case 'TOGGLE_SORT':
-    return { ...previousState, isDESC: !previousState.isDESC }
-
+    newState = { ...previousState }
+    newState[action.apiType].isDESC = !newState[action.apiType].isDESC
+    return newState
   case 'FETCHED_ALL':
-    return { ...previousState, isFetchedAll: true }
-
+    newState = { ...previousState }
+    newState[action.apiType].isFetchedAll = true
+    return newState
   default:
     return previousState
   }
@@ -48,8 +66,8 @@ const dataReducer = (previousState, action) => {
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState)
 
-  const toggleSort = () => {
-    dispatch({ type: 'TOGGLE_SORT' })
+  const toggleSort = api => {
+    dispatch({ type: 'TOGGLE_SORT', apiType: api })
   }
 
   return (

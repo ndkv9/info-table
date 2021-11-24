@@ -23,7 +23,7 @@ const useFetch = (fn, api) => {
     }
 
     dispatch({ type: 'STOP_LOADING', apiType: api })
-  }, [dispatch, fn])
+  }, [dispatch, fn, api])
 
   return fetchData
 }

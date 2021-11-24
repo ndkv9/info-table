@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -14,8 +14,6 @@ import Notification from './Notification'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
-import useData from '../hooks/useData'
-import useFetch from '../hooks/useFetch'
 import useSort from '../hooks/useSort'
 import helper from '../utils/helper'
 
@@ -33,21 +31,13 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ getAPI }) => {
+const InfoTable = ({ api, fetchData, toggleSort }) => {
   const classes = useStyles()
 
-  const { data, isDESC, isLoading, isError, isFetchedAll, toggleSort } =
-    useData()
+  const { data, isDESC, isLoading, isError, isFetchedAll } = api
 
   // helper to sort date value in reverse chronological order (newest first) as default
   const sortByDateValue = useSort(isDESC)
-  const fetchData = useFetch(getAPI)
-
-  // fetch initial data in the first load
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
-
   const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
     timestamp: helper.getDateValue(timestamp),
