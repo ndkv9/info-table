@@ -1,28 +1,15 @@
 import React from 'react'
-import api from '../lib/api'
+//import api from '../lib/api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
-import InfoTable from './InfoTable'
-import Typography from '@material-ui/core/Typography'
+import { Typography } from '@material-ui/core'
 
 export const App = () => {
-  const { getUsersDiff, getProjectsDiff } = api
+  //const { getUsersDiff } = api
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
-        <React.Fragment>
-          <Typography variant='h4' align='center'>
-            Users History
-          </Typography>
-          <InfoTable getData={getUsersDiff} />
-        </React.Fragment>
-
-        <React.Fragment>
-          <Typography variant='h4' align='center'>
-            Projects History
-          </Typography>
-          <InfoTable getData={getProjectsDiff} />
-        </React.Fragment>
+        <Typography>hello world</Typography>
       </Box>
     </Container>
   )
