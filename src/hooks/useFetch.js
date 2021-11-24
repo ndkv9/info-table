@@ -4,25 +4,25 @@ import useData from '../hooks/useData'
 // every time the table need to fetch data, it will change all necessary states
 // this helper hook will cover these changes
 
-const useFetch = fn => {
+const useFetch = (fn, api) => {
   const { dispatch } = useData()
 
   const fetchData = useCallback(async () => {
     try {
-      dispatch({ type: 'LOADING' })
+      dispatch({ type: 'LOADING', apiType: api })
       const result = await fn()
-      dispatch({ type: 'LOADING_SUCCESS' })
-      dispatch({ type: 'LOAD_DATA', payload: result.data })
+      dispatch({ type: 'LOADING_SUCCESS', apiType: api })
+      dispatch({ type: 'LOAD_DATA', payload: result.data, apiType: api })
 
       // handle fetching all data from API
       if (result.offset + result.limit >= result.total) {
-        dispatch({ type: 'FETCHED_ALL' })
+        dispatch({ type: 'FETCHED_ALL', apiType: api })
       }
     } catch (error) {
-      dispatch({ type: 'LOADING_FAILED' })
+      dispatch({ type: 'LOADING_FAILED', apiType: api })
     }
 
-    dispatch({ type: 'STOP_LOADING' })
+    dispatch({ type: 'STOP_LOADING', apiType: api })
   }, [dispatch, fn])
 
   return fetchData
