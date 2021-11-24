@@ -11,6 +11,13 @@ const initialDataState = {
     isError: false,
     isFetchedAll: false,
   },
+  users: {
+    data: [],
+    isLoading: false,
+    isDESC: true,
+    isError: false,
+    isFetchedAll: false,
+  },
 }
 
 const dataReducer = (previousState, action) => {
