@@ -46,11 +46,12 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
   }))
 
   return (
-    <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
-      <Typography variant='h4' align='center'>
-        {name} History
-      </Typography>
-      {data.length !== 0 && (
+    data.length !== 0 && (
+      <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
+        <Typography variant='h4' align='center'>
+          {name} History
+        </Typography>
+
         <TableContainer className={classes.root} component={Paper}>
           <Table className={classes.table} arcenterbel='simple table'>
             <TableHead>
@@ -91,28 +92,28 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
             </TableBody>
           </Table>
         </TableContainer>
-      )}
 
-      <Notification isFetchedAll={isFetchedAll} isError={isError} />
+        <Notification isFetchedAll={isFetchedAll} isError={isError} />
 
-      {
-        // Modify the visibility of the components bases on the loading and error states
-      }
-      {isLoading ? (
-        <LoadingCircular />
-      ) : isFetchedAll ? null : (
-        <Box textAlign='center' marginBottom='2rem'>
-          <Button
-            variant='contained'
-            color='primary'
-            data-testid='loading-btn'
-            onClick={fetchData}
-          >
-            {isError ? 'Retry' : 'Load more'}
-          </Button>
-        </Box>
-      )}
-    </Box>
+        {
+          // Modify the visibility of the components bases on the loading and error states
+        }
+        {isLoading ? (
+          <LoadingCircular />
+        ) : isFetchedAll ? null : (
+          <Box textAlign='center' marginBottom='2rem'>
+            <Button
+              variant='contained'
+              color='primary'
+              data-testid='loading-btn'
+              onClick={fetchData}
+            >
+              {isError ? 'Retry' : 'Load more'}
+            </Button>
+          </Box>
+        )}
+      </Box>
+    )
   )
 }
 

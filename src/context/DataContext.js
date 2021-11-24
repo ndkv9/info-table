@@ -66,6 +66,7 @@ const dataReducer = (previousState, action) => {
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState)
 
+  // toggleSort helper
   const toggleSort = api => {
     dispatch({ type: 'TOGGLE_SORT', apiType: api })
   }
