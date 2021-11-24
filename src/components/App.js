@@ -30,19 +30,19 @@ export const App = () => {
 
   return (
     <Container className='app' fixed>
-      {projects.data.length === 0 && users.data.length === 0 && (
-        <Box className={classes.circular}>
-          <Typography variant='h5' align='center'>
-            Loading..
-          </Typography>
+      <Box data-testid='app-box' m={2}>
+        {projects.data.length === 0 && users.data.length === 0 && (
+          <Box className={classes.circular}>
+            <Typography variant='h5' align='center'>
+              Loading..
+            </Typography>
 
-          <LoadingCircular />
-        </Box>
-      )}
+            <LoadingCircular />
+          </Box>
+        )}
 
-      {projects.data.length !== 0 && users.data.length !== 0 && (
-        <React.Fragment>
-          <Box data-testid='app-box' m={2}>
+        {projects.data.length !== 0 && users.data.length !== 0 && (
+          <React.Fragment>
             <InfoTable
               name={'Users'}
               api={users}
@@ -56,9 +56,9 @@ export const App = () => {
               fetchData={fetchProjectsData}
               toggleSort={() => toggleSort('projects')}
             />
-          </Box>
-        </React.Fragment>
-      )}
+          </React.Fragment>
+        )}
+      </Box>
     </Container>
   )
 }

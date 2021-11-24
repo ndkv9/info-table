@@ -38,15 +38,18 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
 
   // helper to sort date value in reverse chronological order (newest first) as default
   const sortByDateValue = useSort(isDESC)
-  const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
-    id,
-    timestamp: helper.getDateValue(timestamp),
-    oldValue: diff[0].oldValue,
-    newValue: diff[0].newValue,
-  }))
+
+  const rows = sortByDateValue(data ? data : []).map(
+    ({ id, timestamp, diff }) => ({
+      id,
+      timestamp: helper.getDateValue(timestamp),
+      oldValue: diff[0].oldValue,
+      newValue: diff[0].newValue,
+    }),
+  )
 
   return (
-    data.length !== 0 && (
+    data?.length !== 0 && (
       <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
         <Typography variant='h4' align='center'>
           {name} History
@@ -119,9 +122,15 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
 
 InfoTable.propTypes = {
   name: PropTypes.string.isRequired,
-  api: PropTypes.object.isRequired,
   toggleSort: PropTypes.func.isRequired,
   fetchData: PropTypes.func.isRequired,
+  api: PropTypes.shape({
+    data: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isDESC: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired,
+    isFetchedAll: PropTypes.bool.isRequired,
+  }),
 }
 
 export default InfoTable
