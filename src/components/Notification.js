@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Typography } from '@material-ui/core'
 
-const Notification = ({ notification, isError }) => {
-  if (!notification) {
+const Notification = ({ isError, isFetchdeAll }) => {
+  if (!(isError || isFetchdeAll)) {
     return null
   }
 
@@ -15,13 +15,15 @@ const Notification = ({ notification, isError }) => {
       align='center'
       color={isError ? 'error' : 'secondary'}
     >
-      {notification}
+      {isError
+        ? 'We had problems fetching your data. Please try again!'
+        : 'Fetched all data!'}
     </Typography>
   )
 }
 
 Notification.propTypes = {
-  notification: PropTypes.string,
+  isFetchedAll: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
 }
 
