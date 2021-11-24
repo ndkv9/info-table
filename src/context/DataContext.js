@@ -12,42 +12,30 @@ const initialDataState = {
 }
 
 const dataReducer = (previousState, action) => {
-  let newState
   switch (action.type) {
   case 'LOAD_DATA':
-    newState = { ...previousState }
-    newState.data = newState.data.concat(action.payload)
-    return newState
+    return {
+      ...previousState,
+      data: [...previousState.data, ...action.payload],
+    }
 
   case 'LOADING':
-    newState = { ...previousState }
-    newState.isLoading = true
-    return newState
+    return { ...previousState, isLoading: true }
 
   case 'STOP_LOADING':
-    newState = { ...previousState }
-    newState.isLoading = false
-    return newState
+    return { ...previousState, isLoading: false }
 
   case 'LOADING_SUCCESS':
-    newState = { ...previousState }
-    newState.isError = false
-    return newState
+    return { ...previousState, isError: false }
 
   case 'LOADING_FAILED':
-    newState = { ...previousState }
-    newState.isError = true
-    return newState
+    return { ...previousState, isError: true }
 
   case 'TOGGLE_SORT':
-    newState = { ...previousState }
-    newState.isDESC = !newState.isDESC
-    return newState
+    return { ...previousState, isDESC: !previousState.isDESC }
 
   case 'FETCHED_ALL':
-    newState = { ...previousState }
-    newState.isFetchedAll = true
-    return newState
+    return { ...previousState, isFetchedAll: true }
 
   default:
     return previousState
@@ -56,6 +44,7 @@ const dataReducer = (previousState, action) => {
 
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState)
+
   return (
     <DataContext.Provider value={{ ...state, dispatch }}>
       {children}

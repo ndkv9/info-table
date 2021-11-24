@@ -2,8 +2,8 @@ import React from 'react'
 import api from '../lib/api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
-import { Typography } from '@material-ui/core'
 import InfoTable from './InfoTable'
+import { Typography } from '@material-ui/core'
 import { DataProvider } from '../context/DataContext'
 
 export const App = () => {
