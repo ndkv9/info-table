@@ -9,16 +9,14 @@ describe('<App />', () => {
   beforeEach(() => {
     wrapper = shallow(
       <DataProvider>
-        <App />
+        <App data-testid='app' />
       </DataProvider>,
     )
   })
 
   describe('render()', () => {
-    it('renders the Box', () => {
-      expect(
-        wrapper.children().find({ 'data-testid': 'app-box' }),
-      ).toHaveLength(1)
+    it('renders the App', () => {
+      expect(wrapper.children().find({ 'data-testid': 'app' })).toHaveLength(1)
     })
   })
 })

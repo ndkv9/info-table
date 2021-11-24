@@ -24,8 +24,10 @@ describe('<InfoTable />', () => {
       expect(wrapper.find({ 'data-testid': 'info-table' })).toHaveLength(1)
     })
 
-    it('displays loading button', () => {
-      expect(wrapper.find({ 'data-testid': 'loading-btn' })).toHaveLength(1)
+    it('displays the proper title', () => {
+      expect(wrapper.find({ 'data-testid': 'table-title' }).text()).toBe(
+        'Projects History',
+      )
     })
 
     it('loads data when button is clicked', () => {

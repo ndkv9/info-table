@@ -49,7 +49,7 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
   return (
     data.length !== 0 && (
       <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
-        <Typography variant='h4' align='center'>
+        <Typography data-testid='table-title' variant='h4' align='center'>
           {name} History
         </Typography>
 
@@ -59,7 +59,13 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
               <TableRow>
                 <TableCell align='left' width={100}>
                   <SortingButton isDESC={isDESC} toggleSort={toggleSort}>
-                    <Typography className={classes.header}> Date</Typography>
+                    <Typography
+                      data-testid='sorting-field'
+                      className={classes.header}
+                    >
+                      {' '}
+                      Date
+                    </Typography>
                   </SortingButton>
                 </TableCell>
                 <TableCell align='left' width={400}>
