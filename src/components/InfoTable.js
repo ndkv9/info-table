@@ -16,7 +16,7 @@ import PropTypes from 'prop-types'
 import useData from '../hooks/useData'
 import useFetch from '../hooks/useFetch'
 import useSort from '../hooks/useSort'
-import useDate from '../hooks/useDate'
+import helper from '../utils/helper'
 
 const useStyles = makeStyles({
   root: {
@@ -38,8 +38,7 @@ const InfoTable = ({ getAPI }) => {
   const { data, isDESC, isLoading, isError, isFetchedAll, toggleSort } =
     useData()
 
-  // helper fn to transform timestamp to date value
-  const getDateValue = useDate()
+  // helper to sort date value in reverse chronological order (newest first) as default
   const sortByDateValue = useSort(isDESC)
   const fetchData = useFetch(getAPI)
 
@@ -49,7 +48,7 @@ const InfoTable = ({ getAPI }) => {
 
   const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
-    timestamp: getDateValue(timestamp),
+    timestamp: helper.getDateValue(timestamp),
     oldValue: diff[0].oldValue,
     newValue: diff[0].newValue,
   }))
