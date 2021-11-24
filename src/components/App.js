@@ -3,7 +3,7 @@ import api from '../lib/api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import InfoTable from './InfoTable'
-import { Typography } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
 import { DataProvider } from '../context/DataContext'
 
 export const App = () => {

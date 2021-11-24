@@ -11,7 +11,8 @@ import SortingButton from './SortingButton'
 import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
-import { Box, Typography } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
 import useData from '../hooks/useData'
 import useFetch from '../hooks/useFetch'
@@ -98,6 +99,7 @@ const InfoTable = ({ getAPI }) => {
           </Table>
         </TableContainer>
       )}
+
       <Notification isFetchedAll={isFetchedAll} isError={isError} />
 
       {
