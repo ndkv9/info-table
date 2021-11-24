@@ -12,13 +12,17 @@ export const App = () => {
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
-        <Typography>hello world</Typography>
-
         <DataProvider>
+          <Typography variant='h4' align='center'>
+            Users History
+          </Typography>
           <InfoTable getData={getUsersDiff} />
         </DataProvider>
 
         <DataProvider>
+          <Typography variant='h4' align='center'>
+            Projects History
+          </Typography>
           <InfoTable getData={getProjectsDiff} />
         </DataProvider>
       </Box>

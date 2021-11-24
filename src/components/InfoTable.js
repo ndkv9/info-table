@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import LoadingCircular from './LoadingCircular'
 import Notification from './Notification'
 import { Box, Typography } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import useData from '../hooks/useData'
 
 const useStyles = makeStyles({
@@ -150,8 +151,8 @@ const InfoTable = ({ getData }) => {
   )
 }
 
-// InfoTable.propTypes = {
-//   getData: PropTypes.func.isRequired,
-// }
+InfoTable.propTypes = {
+  getData: PropTypes.func.isRequired,
+}
 
 export default InfoTable
