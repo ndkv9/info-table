@@ -24,13 +24,13 @@ describe('<InfoTable />', () => {
       expect(wrapper.find({ 'data-testid': 'info-table' })).toHaveLength(1)
     })
 
-    // it('displays loading button', () => {
-    //   expect(wrapper.find({ 'data-testid': 'loading-btn' })).toHaveLength(1)
-    // })
+    it('displays loading button', () => {
+      expect(wrapper.find({ 'data-testid': 'loading-btn' })).toHaveLength(1)
+    })
 
-    // it('loads data when button is clicked', () => {
-    //   wrapper.find({ 'data-testid': 'loading-btn' }).simulate('click')
-    //   expect(mockFetchData).toHaveBeenCalled()
-    // })
+    it('loads data when button is clicked', () => {
+      wrapper.find({ 'data-testid': 'loading-btn' }).simulate('click')
+      expect(mockFetch).toHaveBeenCalled()
+    })
   })
 })

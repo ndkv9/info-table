@@ -39,17 +39,15 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
   // helper to sort date value in reverse chronological order (newest first) as default
   const sortByDateValue = useSort(isDESC)
 
-  const rows = sortByDateValue(data ? data : []).map(
-    ({ id, timestamp, diff }) => ({
-      id,
-      timestamp: helper.getDateValue(timestamp),
-      oldValue: diff[0].oldValue,
-      newValue: diff[0].newValue,
-    }),
-  )
+  const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
+    id,
+    timestamp: helper.getDateValue(timestamp),
+    oldValue: diff[0].oldValue,
+    newValue: diff[0].newValue,
+  }))
 
   return (
-    data?.length !== 0 && (
+    data.length !== 0 && (
       <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
         <Typography variant='h4' align='center'>
           {name} History

@@ -1,17 +1,24 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { App } from './App'
+import { DataProvider } from '../context/DataContext'
 
 describe('<App />', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<App />)
+    wrapper = shallow(
+      <DataProvider>
+        <App />
+      </DataProvider>,
+    )
   })
 
   describe('render()', () => {
     it('renders the Box', () => {
-      expect(wrapper.find({ 'data-testid': 'app-box' })).toHaveLength(1)
+      expect(
+        wrapper.children().find({ 'data-testid': 'app-box' }),
+      ).toHaveLength(1)
     })
   })
 })

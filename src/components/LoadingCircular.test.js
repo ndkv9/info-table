@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import LoadingCircular from './LoadingCircular'
 
-describe('<App />', () => {
+describe('<LoadingCircular />', () => {
   let wrapper
 
   beforeEach(() => {
