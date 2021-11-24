@@ -10,6 +10,8 @@ const useFetch = fn => {
       const result = await fn()
       dispatch({ type: 'LOADING_SUCCESS' })
       dispatch({ type: 'LOAD_DATA', payload: result.data })
+
+      // handle fetching all data from API
       if (result.offset + result.limit >= result.total) {
         dispatch({ type: 'FETCHED_ALL' })
       }

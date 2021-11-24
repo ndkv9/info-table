@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -15,6 +15,8 @@ import { Box, Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import useData from '../hooks/useData'
 import useFetch from '../hooks/useFetch'
+import useSort from '../hooks/useSort'
+import useDate from '../hooks/useDate'
 
 const useStyles = makeStyles({
   root: {
@@ -36,33 +38,14 @@ const InfoTable = ({ getAPI }) => {
   const { data, isDESC, isLoading, isError, isFetchedAll, toggleSort } =
     useData()
 
+  // helper fn to transform timestamp to date value
+  const getDateValue = useDate()
+  const sortByDateValue = useSort(isDESC)
   const fetchData = useFetch(getAPI)
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
-
-  // helper fn to transform timestamp to date value
-  const getDateValue = timestamp => {
-    const partsOfDate = new Date(timestamp).toLocaleDateString().split('/')
-    const year = partsOfDate.pop()
-    partsOfDate.unshift(year)
-    const date = partsOfDate.join('-')
-
-    return date
-  }
-
-  //helper fn to sort data by date
-  const sortByDateValue = useCallback(
-    data => {
-      if (isDESC) {
-        return data.sort((current, next) => next.timestamp - current.timestamp)
-      } else {
-        return data.sort((current, next) => current.timestamp - next.timestamp)
-      }
-    },
-    [isDESC],
-  )
 
   const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
