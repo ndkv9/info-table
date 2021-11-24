@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
 
+// helper hook for using data context
 const useData = () => {
   const context = useContext(DataContext)
 

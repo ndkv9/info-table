@@ -98,9 +98,11 @@ const InfoTable = ({ getAPI }) => {
           </Table>
         </TableContainer>
       )}
-
       <Notification isFetchedAll={isFetchedAll} isError={isError} />
 
+      {
+        // Modify the visibility of the components bases on the loading and error states
+      }
       {isLoading ? (
         <LoadingCircular />
       ) : isFetchedAll ? null : (

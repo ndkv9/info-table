@@ -1,6 +1,9 @@
 import React from 'react'
 import { createContext, useReducer } from 'react'
 
+// Combine betwween useReducer and useContext to keep the state management logic separate
+// Each table will have a set of states that depends on it's states, so they need to manage them separately
+
 export const DataContext = createContext()
 
 const initialDataState = {

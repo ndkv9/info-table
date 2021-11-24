@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
 import useData from '../hooks/useData'
 
+// every time the table need to fetch data, it will change all necessary states
+// this helper hook will cover these changes
+
 const useFetch = fn => {
   const { dispatch } = useData()
 
