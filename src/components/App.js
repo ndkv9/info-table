@@ -30,13 +30,16 @@ export const App = () => {
     fetchProjectsData()
   }, [fetchProjectsData])
 
-  console.log('projects', projects)
   return (
     <Container className='app' fixed>
       <Box data-testid='app-box' m={2}>
         <Typography>hello world</Typography>
 
-        <InfoTable dataType={projects} dispatch={dispatch} />
+        <InfoTable
+          dataType={projects}
+          dispatch={dispatch}
+          fetchData={fetchProjectsData}
+        />
       </Box>
     </Container>
   )

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -9,9 +9,9 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 //import PropTypes from 'prop-types'
 import SortingButton from './SortingButton'
-// import Button from '@material-ui/core/Button'
-// import LoadingCircular from './LoadingCircular'
-// import Notification from './Notification'
+import Button from '@material-ui/core/Button'
+import LoadingCircular from './LoadingCircular'
+import Notification from './Notification'
 import { Box, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -28,39 +28,9 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ dataType, dispatch }) => {
+const InfoTable = ({ dataType, dispatch, fetchData }) => {
   const classes = useStyles()
-
   const { data, isDESC, isLoading, isError, isFetchedAll } = dataType
-  // const [isDESC, setIsDESC] = useState(true)
-  // const [data, setData] = useState([])
-  // const [isLoading, setIsLoading] = useState(false)
-  // const [isError, setIsError] = useState(false)
-  const [notification, setNotification] = useState(null)
-  // const [isFetchedAll, setIsFetchedAll] = useState(false)
-
-  // const fetchData = useCallback(async () => {
-  //   try {
-  //     setIsLoading(true)
-  //     setNotification(null)
-  //     const result = await getData()
-  //     setIsError(false)
-  //     setData(prev => [...prev, ...result.data])
-  //     if (result.offset + result.limit >= result.total) {
-  //       setIsFetchedAll(true)
-  //       setNotification('Fetched all data!')
-  //     }
-  //   } catch (error) {
-  //     setIsError(true)
-  //     setNotification('We had problems fetching your data. Please try again!')
-  //   }
-
-  //   setIsLoading(false)
-  // }, [getData])
-
-  // useEffect(() => {
-  //   fetchData()
-  // }, [fetchData])
 
   // helper fn to transform timestamp to date value
   const getDateValue = timestamp => {
@@ -139,7 +109,7 @@ const InfoTable = ({ dataType, dispatch }) => {
         </TableContainer>
       )}
 
-      {/* <Notification notification={notification} isError={isError} />
+      <Notification isFetchedAll={isFetchedAll} isError={isError} />
 
       {isLoading ? (
         <LoadingCircular />
@@ -154,7 +124,7 @@ const InfoTable = ({ dataType, dispatch }) => {
             {isError ? 'Retry' : 'Load more'}
           </Button>
         </Box>
-      )} */}
+      )}
     </Box>
   )
 }

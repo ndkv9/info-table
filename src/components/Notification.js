@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Typography } from '@material-ui/core'
 
-const Notification = ({ isError, isFetchdeAll }) => {
-  if (!(isError || isFetchdeAll)) {
+const Notification = ({ isError, isFetchedAll }) => {
+  if (!(isError || isFetchedAll)) {
     return null
   }
 
