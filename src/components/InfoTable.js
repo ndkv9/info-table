@@ -29,8 +29,10 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ data }) => {
+const InfoTable = ({ dataType }) => {
   const classes = useStyles()
+
+  const { data } = dataType
   // const [isDESC, setIsDESC] = useState(true)
   // const [data, setData] = useState([])
   // const [isLoading, setIsLoading] = useState(false)

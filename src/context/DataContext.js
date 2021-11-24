@@ -6,6 +6,10 @@ export const DataContext = createContext()
 const initialDataState = {
   projects: {
     data: [],
+    isLoading: false,
+    isDESC: true,
+    isError: false,
+    isFetchedAll: false,
   },
 }
 
@@ -15,6 +19,31 @@ const dataReducer = (previousState, action) => {
   case 'LOAD_PROJECTS_DATA':
     newState = { ...previousState }
     newState.projects.data = newState.projects.data.concat(action.payload)
+    return newState
+
+  case 'LOADING':
+    newState = { ...previousState }
+    newState.projects.isLoading = true
+    return newState
+
+  case 'STOP_LOADING':
+    newState = { ...previousState }
+    newState.projects.isLoading = false
+    return newState
+
+  case 'LOADING_SUCCESS':
+    newState = { ...previousState }
+    newState.projects.isError = false
+    return newState
+
+  case 'LOADING_FAILED':
+    newState = { ...previousState }
+    newState.projects.isError = true
+    return newState
+
+  case 'FETCHED_ALL':
+    newState = { ...previousState }
+    newState.projects.isFetchedAll = true
     return newState
 
   default:
