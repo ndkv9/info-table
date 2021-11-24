@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ api, fetchData, toggleSort }) => {
+const InfoTable = ({ name, api, fetchData, toggleSort }) => {
   const classes = useStyles()
 
   const { data, isDESC, isLoading, isError, isFetchedAll } = api
@@ -47,6 +47,9 @@ const InfoTable = ({ api, fetchData, toggleSort }) => {
 
   return (
     <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
+      <Typography variant='h4' align='center'>
+        {name} History
+      </Typography>
       {data.length !== 0 && (
         <TableContainer className={classes.root} component={Paper}>
           <Table className={classes.table} arcenterbel='simple table'>
@@ -114,7 +117,10 @@ const InfoTable = ({ api, fetchData, toggleSort }) => {
 }
 
 InfoTable.propTypes = {
-  getAPI: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  api: PropTypes.object.isRequired,
+  toggleSort: PropTypes.func.isRequired,
+  fetchData: PropTypes.func.isRequired,
 }
 
 export default InfoTable
