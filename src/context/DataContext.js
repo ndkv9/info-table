@@ -41,6 +41,11 @@ const dataReducer = (previousState, action) => {
     newState.projects.isError = true
     return newState
 
+  case 'TOGGLE_SORT':
+    newState = { ...previousState }
+    newState.projects.isDESC = !newState.projects.isDESC
+    return newState
+
   case 'FETCHED_ALL':
     newState = { ...previousState }
     newState.projects.isFetchedAll = true

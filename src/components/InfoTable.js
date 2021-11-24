@@ -1,5 +1,4 @@
-//import React, { useCallback, useEffect, useState } from 'react'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -9,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 //import PropTypes from 'prop-types'
-// import SortingButton from './SortingButton'
+import SortingButton from './SortingButton'
 // import Button from '@material-ui/core/Button'
 // import LoadingCircular from './LoadingCircular'
 // import Notification from './Notification'
@@ -29,15 +28,15 @@ const useStyles = makeStyles({
   },
 })
 
-const InfoTable = ({ dataType }) => {
+const InfoTable = ({ dataType, dispatch }) => {
   const classes = useStyles()
 
-  const { data } = dataType
+  const { data, isDESC, isLoading, isError, isFetchedAll } = dataType
   // const [isDESC, setIsDESC] = useState(true)
   // const [data, setData] = useState([])
   // const [isLoading, setIsLoading] = useState(false)
   // const [isError, setIsError] = useState(false)
-  // const [notification, setNotification] = useState(null)
+  const [notification, setNotification] = useState(null)
   // const [isFetchedAll, setIsFetchedAll] = useState(false)
 
   // const fetchData = useCallback(async () => {
@@ -73,19 +72,19 @@ const InfoTable = ({ dataType }) => {
     return date
   }
 
-  // helper fn to sort data by date
-  // const sortByDateValue = useCallback(
-  //   data => {
-  //     if (isDESC) {
-  //       return data.sort((current, next) => next.timestamp - current.timestamp)
-  //     } else {
-  //       return data.sort((current, next) => current.timestamp - next.timestamp)
-  //     }
-  //   },
-  //   [isDESC],
-  // )
+  //helper fn to sort data by date
+  const sortByDateValue = useCallback(
+    data => {
+      if (isDESC) {
+        return data.sort((current, next) => next.timestamp - current.timestamp)
+      } else {
+        return data.sort((current, next) => current.timestamp - next.timestamp)
+      }
+    },
+    [isDESC],
+  )
 
-  const rows = data.map(({ id, timestamp, diff }) => ({
+  const rows = sortByDateValue(data).map(({ id, timestamp, diff }) => ({
     id,
     timestamp: getDateValue(timestamp),
     oldValue: diff[0].oldValue,
@@ -100,10 +99,12 @@ const InfoTable = ({ dataType }) => {
             <TableHead>
               <TableRow>
                 <TableCell align='left' width={100}>
-                  {/* <SortingButton isDESC={isDESC} setIsDESC={setIsDESC}>
+                  <SortingButton
+                    isDESC={isDESC}
+                    toggleSort={() => dispatch({ type: 'TOGGLE_SORT' })}
+                  >
                     <Typography className={classes.header}> Date</Typography>
-                  </SortingButton> */}
-                  Date
+                  </SortingButton>
                 </TableCell>
                 <TableCell align='left' width={400}>
                   <Typography className={classes.header}>User ID</Typography>

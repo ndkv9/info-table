@@ -36,7 +36,7 @@ export const App = () => {
       <Box data-testid='app-box' m={2}>
         <Typography>hello world</Typography>
 
-        <InfoTable dataType={projects} />
+        <InfoTable dataType={projects} dispatch={dispatch} />
       </Box>
     </Container>
   )
