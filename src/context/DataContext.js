@@ -45,16 +45,12 @@ const dataReducer = (previousState, action) => {
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialDataState)
 
-  const loadData = () => {
-    dispatch({ type: 'LOADING' })
-  }
-
-  const loadMore = data => {
-    dispatch({ type: 'LOAD_DATA', payload: data })
+  const toggleSort = () => {
+    dispatch({ type: 'TOGGLE_SORT' })
   }
 
   return (
-    <DataContext.Provider value={{ ...state, dispatch, loadData, loadMore }}>
+    <DataContext.Provider value={{ ...state, dispatch, toggleSort }}>
       {children}
     </DataContext.Provider>
   )

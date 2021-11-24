@@ -33,7 +33,8 @@ const useStyles = makeStyles({
 const InfoTable = ({ getAPI }) => {
   const classes = useStyles()
 
-  const { data, isDESC, isLoading, isError, isFetchedAll, dispatch } = useData()
+  const { data, isDESC, isLoading, isError, isFetchedAll, toggleSort } =
+    useData()
 
   const fetchData = useFetch(getAPI)
 
@@ -78,10 +79,7 @@ const InfoTable = ({ getAPI }) => {
             <TableHead>
               <TableRow>
                 <TableCell align='left' width={100}>
-                  <SortingButton
-                    isDESC={isDESC}
-                    toggleSort={() => dispatch({ type: 'TOGGLE_SORT' })}
-                  >
+                  <SortingButton isDESC={isDESC} toggleSort={toggleSort}>
                     <Typography className={classes.header}> Date</Typography>
                   </SortingButton>
                 </TableCell>
