@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
