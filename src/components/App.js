@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   circular: {
-    margin: '10rem auto',
+    margin: '15rem auto',
   },
 })
 

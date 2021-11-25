@@ -41,7 +41,7 @@ describe('<InfoTable />', () => {
     })
 
     // the mockData has 5 sets, so the table should display 5 rows as well
-    it('number of rows corresponding to the number of data set', () => {
+    it('the number of rows is corresponding to the number of datasets', () => {
       expect(wrapper.find({ 'data-testid': 'table-rows' })).toHaveLength(5)
     })
   })
