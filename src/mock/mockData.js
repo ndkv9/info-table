@@ -1,3 +1,4 @@
+// mocking data for Enzyme test
 export const mockData = {
   data: [
     {

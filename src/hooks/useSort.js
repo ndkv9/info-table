@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 
+// helper hook to sort date values base on the order it receives
 const useSort = isDESC => {
   const sortByDateValue = useCallback(
     data => {

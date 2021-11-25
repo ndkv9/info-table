@@ -19,6 +19,9 @@ describe('<InfoTable />', () => {
     )
   })
 
+  // In this test suite I will forcus on the Table component itself with basic tests
+  // More about handling with data, on loading, error or sorting will be implemented in e2e tests
+  // The e2e tests can be found in /cypress/interation/e2e.cypress.js
   describe('render()', () => {
     it('renders the table component', () => {
       expect(wrapper.find({ 'data-testid': 'info-table' })).toHaveLength(1)
