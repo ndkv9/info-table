@@ -48,7 +48,13 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
 
   return (
     data.length !== 0 && (
-      <Box data-testid='info-table' boxShadow={0} m={2} p={2}>
+      <Box
+        data-testid='info-table'
+        data-cy='info-table'
+        boxShadow={0}
+        m={2}
+        p={2}
+      >
         <Typography data-testid='table-title' variant='h4' align='center'>
           {name} History
         </Typography>
@@ -83,7 +89,11 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
             </TableHead>
             <TableBody>
               {rows.map(row => (
-                <TableRow key={row.id} data-testid='table-rows'>
+                <TableRow
+                  key={row.id}
+                  data-testid='table-rows'
+                  data-cy='table-rows'
+                >
                   <TableCell align='left'>
                     <Typography>{row.timestamp}</Typography>
                   </TableCell>
