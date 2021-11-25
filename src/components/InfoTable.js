@@ -120,7 +120,7 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
         {isLoading ? (
           <LoadingCircular />
         ) : isFetchedAll ? null : (
-          <Box textAlign='center' marginBottom='2rem'>
+          <Box textAlign='center' marginBottom='2rem' data-cy='loading-btn'>
             <Button
               variant='contained'
               color='primary'

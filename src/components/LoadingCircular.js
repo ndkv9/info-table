@@ -4,7 +4,11 @@ import Box from '@material-ui/core/Box'
 
 const LoadingCircular = () => {
   return (
-    <Box data-testid='loading-circular' textAlign='center'>
+    <Box
+      data-testid='loading-circular'
+      data-cy='progress-circular'
+      textAlign='center'
+    >
       <CircularProgress />
     </Box>
   )
