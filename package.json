@@ -14,9 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint .",
-    "test": "react-scripts test",
-    "test:e2e": "cypress run",
     "cypress:open": "cypress open",
+    "test:e2e": "cypress run",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
