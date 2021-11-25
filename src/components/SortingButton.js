@@ -6,6 +6,7 @@ const SortingButton = ({ isDESC, toggleSort, children }) => {
   return (
     <TableSortLabel
       data-testid='sorting-btn'
+      data-cy='sorting-btn'
       active={true}
       direction={isDESC ? 'desc' : 'asc'}
       onClick={toggleSort}

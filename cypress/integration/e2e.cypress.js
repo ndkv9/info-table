@@ -21,8 +21,46 @@ describe('History Table App', function () {
     })
   })
 
+  it('can load more content', function () {
+    cy.get('[data-cy=info-table]:first').within(function () {
+      cy.get('button').contains('Load more').click()
+      cy.get('button').contains('Retry').click()
+      cy.get('[data-cy=table-rows]').should('have.length', 6)
+    })
+  })
+
+  // The tests for sorting functionality bases on the display order of the Date column
+  describe('On sorting', function () {
+    it('displays in reverse chronological order (newest first) as default', function () {
+      cy.get('[data-cy=info-table]:first').within(function () {
+        cy.get('[data-cy=timestamp]:first').contains('2020-2-16')
+        cy.get('[data-cy=timestamp]:last').contains('2020-2-14')
+      })
+    })
+
+    it('displays in chronological order after softing', function () {
+      cy.get('[data-cy=info-table]:first').within(function () {
+        cy.get('[data-cy=sorting-btn]').click()
+        cy.get('[data-cy=timestamp]:first').contains('2020-2-14')
+        cy.get('[data-cy=timestamp]:last').contains('2020-2-16')
+      })
+    })
+
+    it('displays in same sorting order after loading more data', function () {
+      cy.get('[data-cy=info-table]:first').within(function () {
+        cy.get('button').contains('Load more').click()
+        cy.get('button').contains('Retry').click()
+        // here we need to wait to simulate the delay of API
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(3000)
+        cy.get('[data-cy=timestamp]:first').contains('2020-2-19')
+        cy.get('[data-cy=timestamp]:last').contains('2020-2-14')
+      })
+    })
+  })
+
+  // I will use the second table for later testing since it has less data and more convenient to test
   describe('On loading state', function () {
-    // I will use the second table for testing since it has less data and more convenient to test
     it('displays progress circular and hide the loading button when loading', function () {
       cy.get('[data-cy=info-table]:last').within(function () {
         cy.get('button').contains('Load more').click()

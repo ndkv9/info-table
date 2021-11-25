@@ -95,7 +95,7 @@ const InfoTable = ({ name, api, fetchData, toggleSort }) => {
                   data-cy='table-rows'
                 >
                   <TableCell align='left'>
-                    <Typography>{row.timestamp}</Typography>
+                    <Typography data-cy='timestamp'>{row.timestamp}</Typography>
                   </TableCell>
                   <TableCell align='left'>
                     <Typography>{row.id}</Typography>
