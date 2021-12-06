@@ -1,5 +1,4 @@
-import React from 'react'
-import { createContext, useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 
 // Combine betwween useReducer and useContext to keep the state management logic separate from the components
 // Each table will have a set of states that depends on it's action, so they need to manage them separately
