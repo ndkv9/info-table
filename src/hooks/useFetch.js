@@ -3,7 +3,7 @@ import useData from '../hooks/useData'
 
 // every time the table need to fetch data, it will change all necessary states
 // this helper hook will cover these changes separately from the table
-
+// this will receive a fn to fetch data from server and a string to identify the data type need to be fetched
 const useFetch = (fn, api) => {
   const { dispatch } = useData()
 
