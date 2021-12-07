@@ -42,11 +42,11 @@ const dataReducer = (previousState, action) => {
     newState = { ...previousState }
     newState[action.apiType].isLoading = false
     return newState
-  case 'LOADING_SUCCESS':
+  case 'SET_ERROR_TO_FALSE':
     newState = { ...previousState }
     newState[action.apiType].isError = false
     return newState
-  case 'LOADING_FAILED':
+  case 'SET_ERROR_TO_TRUE':
     newState = { ...previousState }
     newState[action.apiType].isError = true
     return newState

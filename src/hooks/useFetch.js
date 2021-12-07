@@ -8,10 +8,10 @@ const useFetch = (fn, api) => {
   const { dispatch } = useData()
 
   const fetchData = useCallback(async () => {
+    dispatch({ type: 'SET_ERROR_TO_FALSE', apiType: api })
     try {
       dispatch({ type: 'LOADING', apiType: api })
       const result = await fn()
-      dispatch({ type: 'LOADING_SUCCESS', apiType: api })
       dispatch({ type: 'LOAD_DATA', payload: result.data, apiType: api })
 
       // handle fetching all data from API
@@ -19,7 +19,7 @@ const useFetch = (fn, api) => {
         dispatch({ type: 'FETCHED_ALL', apiType: api })
       }
     } catch (error) {
-      dispatch({ type: 'LOADING_FAILED', apiType: api })
+      dispatch({ type: 'SET_ERROR_TO_TRUE', apiType: api })
     }
 
     dispatch({ type: 'STOP_LOADING', apiType: api })
