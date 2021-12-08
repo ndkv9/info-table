@@ -17,7 +17,7 @@ const Notification = ({ isError, isFetchedAll }) => {
     >
       {isError
         ? 'We had problems fetching your data. Please try again!'
-        : 'Fetched all data!'}
+        : 'All data is fetched!'}
     </Typography>
   )
 }
