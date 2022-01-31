@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   info-table:
+    image: ndkv9/infotable
     build:
       context: ./
       dockerfile: Dockerfile
@@ -12,6 +13,14 @@ services:
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
+
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=60 # Poll every 60 seconds
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower
 
 volumes:
   node_modules:
