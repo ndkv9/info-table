@@ -6,6 +6,14 @@ All the scripts for starting, developing, and testing can be found from package.
 
 To run the app, all dependencies need to be installed with npm install/ yarn
 
+### Run the app
+
+Make sure NodeJS is on your machine
+
+Install dependencies: `npm install` or `yarn`
+
+Run the app: `npm start` or `yarn start`
+
 ### App's features
 
 - ⚡Display two separate tables for Users and Projects history with data from mock API
